@@ -50,6 +50,8 @@ extension LocationDetailView{
                 Image($0)
                     .resizable()
                     .scaledToFill()
+                    .frame(width:UIDevice.current.userInterfaceIdiom == .pad ? nil : UIScreen.main.bounds.width
+                            )
                     
             }
         }
@@ -84,7 +86,7 @@ extension LocationDetailView{
     private var mapLayer:some View{
         Map(coordinateRegion: .constant(MKCoordinateRegion(
             center: location.coordinates,
-            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))),
                             annotationItems: [location],
                             annotationContent: { location in
                                 MapAnnotation(coordinate: location.coordinates){

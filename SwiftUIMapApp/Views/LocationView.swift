@@ -9,9 +9,9 @@ import SwiftUI
 import MapKit
 
 struct LocationView: View {
+    
     @EnvironmentObject private var vm:LocationViewModel
-    
-    
+    let maxWidthForIpad : CGFloat = 700
     
     var body: some View {
         ZStack{
@@ -21,8 +21,9 @@ struct LocationView: View {
             VStack(spacing:0){
                 header
                     .padding()
+                    .frame(maxWidth: maxWidthForIpad)
                 Spacer()
-              bottomStack
+                bottomStack
             }
         }.sheet(item: $vm.sheetLocation, onDismiss: nil ){ location in
             LocationDetailView(location: location)
@@ -87,6 +88,10 @@ extension LocationView{
                         .shadow(color:Color.black.opacity(0.3),
                                 radius: 20)
                         .padding()
+                        .frame(maxWidth: maxWidthForIpad)
+//                        .background(Color.red)
+                        .frame(maxWidth: .infinity)
+//                        .background(Color.green)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                 }
             }                }
